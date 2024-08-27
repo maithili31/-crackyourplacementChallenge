@@ -1,0 +1,24 @@
+class Solution {
+public:
+
+    void ans(TreeNode* root){
+        if(root==NULL){
+            return;
+        }
+        TreeNode* temp = root->left;
+        root->left=root->right;
+        root->right=temp;
+
+        if(root->left!=NULL){
+            ans(root->left);
+        } 
+        if(root->right!=NULL){
+            ans(root->right);
+        }
+    }
+
+    TreeNode* invertTree(TreeNode* root) {
+        ans(root);
+        return root;
+    }
+};
