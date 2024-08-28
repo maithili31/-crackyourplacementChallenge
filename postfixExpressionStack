@@ -1,0 +1,32 @@
+int operate(int m, int n, char ch){
+        if(ch=='+'){
+            return m+n;
+        } else if (ch=='-'){
+            return m-n;
+        } else if (ch=='*'){
+            return m*n;
+        } else if (ch=='/'){
+            return m/n;
+        } else {
+            return 0;
+        }
+    }
+    
+    //Function to evaluate a postfix expression.
+    int evaluatePostfix(string s)
+    {
+        stack<int> st;
+        for(char ch: s){
+            if(ch=='+' || ch=='-' || ch=='*' || ch=='/'){
+                int temp1=st.top();
+                st.pop();
+                int temp2=st.top();
+                st.pop();
+                int ans=operate(temp2,temp1,ch);
+                st.push(ans);
+            } else {
+                st.push(ch-48);
+            }
+        }
+        return st.top();
+    }
